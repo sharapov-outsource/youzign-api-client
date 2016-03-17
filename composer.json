@@ -1,7 +1,13 @@
 {
   "name": "sharapov/youzign-api-client",
   "description": "A PHP client for the Youzign API (http://www.youzign.com/)",
+  "license": "GPL-3.0",
   "type": "library",
+  "keywords": [
+    "youzign",
+    "api"
+  ],
+  "homepage": "https://github.com/sharapovweb/youzign-api-client",
   "authors": [
     {
       "name": "Alexander Sharapov",
