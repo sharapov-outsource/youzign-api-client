@@ -1,0 +1,20 @@
+{
+  "name": "sharapov/youzign-api-client",
+  "description": "A PHP client for the Youzign API (http://www.youzign.com/)",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Alexander Sharapov",
+      "email": "alexander@sharapov.biz"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "guzzlehttp/guzzle": "6.1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "YouzignAPI\\": "src/"
+    }
+  }
+}
