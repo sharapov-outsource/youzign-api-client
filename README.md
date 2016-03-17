@@ -70,25 +70,7 @@ print '</pre>';
 
 Changelog
 =========
-1.0 Stable version with basic functionality.
 
-1.1 Added factory service.
-
-1.1.1 Changed chart loading via factory a bit (see class annotations).
-
-1.1.2 Updated service class with Exception handling regarding missing / wrong class name.
-
-1.1.3 The file with classes' constants is now loaded via Composer (thanks to ThaDafinser).
-
-1.1.4 Fixed code-breaking typ (thanks to subtronic).
-
-1.1.5 Added an option to hide the X axis or only it's values (thanks to julien-gm).
-
-1.1.6 Added support for closures in formatting scale (thanks to funkjedi)
-
-2.0 Updated all classes to PSR-2 standard, added typehinting where possible, updated
-    annotations in methods to be as accurate as possible. Added Behat testing and
-    restructed the namespaces into more sensible structure.
 
 Links
 =====
