@@ -5,7 +5,9 @@
   "authors": [
     {
       "name": "Alexander Sharapov",
-      "email": "alexander@sharapov.biz"
+      "email": "alexander@sharapov.biz",
+      "homepage": "http://sharapov.biz",
+      "role": "Developer"
     }
   ],
   "require": {
