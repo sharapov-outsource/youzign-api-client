@@ -88,6 +88,7 @@ class YzApi
 
     $params['key'] = $this->getPublicKey();
     $params['token'] = $this->getToken();
+    print_r($params);
 
     try {
       $responseJson = $this->getClient()->request('POST', $this->_api . $query, array(
@@ -182,6 +183,6 @@ class YzApi
    */
   public function getDesigns($page = 1, $perPage = 20)
   {
-    return $this->_doRequest('designs', array('page' => $page, 'perPage' => $perPage));
+    return $this->_doRequest('designs', array('page' => $page, 'per_page' => $perPage));
   }
 }
