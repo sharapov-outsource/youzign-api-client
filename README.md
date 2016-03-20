@@ -37,14 +37,19 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 $demoKey = '5077d4ed60da38255c2c71421ddac36f';
 $demoToken = '55f772fcdae50ce0caee3986112621a3';
 
-$yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
+try {
+  $yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
 
-// Get profile data
-$responseJson = $yzApi->getProfile();
+  // Get designs list
+  $responseJson = $yzApi->getProfile();
 
-print '<pre>';
-var_dump($responseJson);
-print '</pre>';
+  print '<pre>';
+  print_r($responseJson);
+  print '</pre>';
+} catch (\Exception $e) {
+  // Print error
+  print $e->getMessage();
+}
 ```
 
 Get designs list
@@ -57,20 +62,26 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 $demoKey = '5077d4ed60da38255c2c71421ddac36f';
 $demoToken = '55f772fcdae50ce0caee3986112621a3';
 
-$yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
+try {
+  $yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
 
-// Get designs list
-$responseJson = $yzApi->getDesigns();
+  // Get designs list
+  $responseJson = $yzApi->getDesigns();
 
-print '<pre>';
-var_dump($responseJson);
-print '</pre>';
+  print '<pre>';
+  print_r($responseJson);
+  print '</pre>';
+} catch (\Exception $e) {
+  // Print error
+  print $e->getMessage();
+}
 ```
 
 
 Changelog
 =========
 
+20 March 2016 - v1.0
 
 Links
 =====
