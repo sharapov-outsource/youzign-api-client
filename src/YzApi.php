@@ -27,13 +27,6 @@ class YzApi
   private $_token = '';
 
   /**
-   * Errors list
-   *
-   * @var array
-   */
-  private $_errors = array();
-
-  /**
    * GuzzleHttp client.
    *
    * @var \GuzzleHttp\Client
@@ -44,7 +37,7 @@ class YzApi
    * YzApi constructor.
    * @param null $publicKey
    * @param null $token
-   * @return void
+   * @return YzApi
    */
   public function __construct($publicKey = null, $token = null)
   {
@@ -55,6 +48,7 @@ class YzApi
       $this->setToken($token);
     }
     $this->_setClient();
+    return $this;
   }
 
   /**
@@ -89,20 +83,29 @@ class YzApi
   private function _doRequest($query, array $params = array())
   {
     if (empty($this->_publicKey) or empty($this->_token)) {
-      throw new \Exception('Empty credentials');
+      throw new \Exception('Empty API key or token.');
     }
 
     $params['key'] = $this->getPublicKey();
     $params['token'] = $this->getToken();
 
-    $responseJson = $this->getClient()->request('POST', $this->_api . $query, array(
-        'form_params' => $params
-    ));
-
-    if ($responseJson->getStatusCode() == '200') {
-      return $this->_parseResult($responseJson);
-    } else {
-      throw new \Exception('Youzign Api is unavailable');
+    try {
+      $responseJson = $this->getClient()->request('POST', $this->_api . $query, array(
+          'form_params' => $params
+      ));
+      if ($responseJson->getStatusCode() == '200') {
+        return $this->_parseResult($responseJson);
+      } else {
+        throw new \Exception('Unknown API response.');
+      }
+    } catch (\GuzzleHttp\Exception\ClientException $e) {
+      if ($e->getCode() == '404') {
+        throw new \Exception('API is unavailable. Check DNS settings.');
+      } elseif ($e->getCode() == '401') {
+        throw new \Exception('Invalid API key or token.');
+      } else {
+        throw new \Exception($e->getMessage());
+      }
     }
   }
 
@@ -118,11 +121,12 @@ class YzApi
   /**
    * Set public ket
    * @param $publicKey
-   * @return void
+   * @return YzApi
    */
   public function setPublicKey($publicKey)
   {
     $this->_publicKey = $publicKey;
+    return $this;
   }
 
   /**
@@ -137,11 +141,12 @@ class YzApi
   /**
    * Set token
    * @param $token
-   * @return void
+   * @return YzApi
    */
   public function setToken($token)
   {
     $this->_token = $token;
+    return $this;
   }
 
   /**
@@ -154,27 +159,18 @@ class YzApi
   }
 
   /**
-   * Parse guzzle http response
+   * Parse http response
    * @param \GuzzleHttp\Psr7\Response $response
-   * @return bool|mixed
+   * @return mixed
+   * @throws \Exception
    */
   private function _parseResult(\GuzzleHttp\Psr7\Response $response)
   {
-    $responseBody = $response->getBody();
-    if (property_exists($responseBody, 'error')) {
-      $this->_setError($responseBody->error);
-      return false;
+    $responseBody = json_decode($response->getBody());
+    if (property_exists((object)$responseBody, 'error')) {
+      throw new \Exception($responseBody->error);
     }
-    return json_decode($responseBody);
-  }
-
-  /**
-   * Set error text
-   * @param $errorText
-   */
-  private function _setError($errorText)
-  {
-    $this->_errors[] = $errorText;
+    return $responseBody;
   }
 
   /**
@@ -187,14 +183,5 @@ class YzApi
   public function getDesigns($page = 1, $perPage = 20)
   {
     return $this->_doRequest('designs', array('page' => $page, 'perPage' => $perPage));
-  }
-
-  /**
-   * Get error list
-   * @return array
-   */
-  public function getErrors()
-  {
-    return $this->_errors;
   }
 }
