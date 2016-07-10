@@ -20,7 +20,7 @@ $ composer require sharapov/youzign-api-client
 
 in your project directory, where the composer.json file is.
 
-After that, the class is available under `YouzignAPI\YzApi` namespace
+After that, the class is available under `\Sharapov\YouzignAPI` namespace
 
 Usage:
 ======
@@ -38,7 +38,7 @@ $demoKey = '5077d4ed60da38255c2c71421ddac36f';
 $demoToken = '55f772fcdae50ce0caee3986112621a3';
 
 try {
-  $yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
+  $yzApi = new \Sharapov\YouzignAPI\YzApi($demoKey, $demoToken);
 
   // Get designs list
   $responseJson = $yzApi->getProfile();
@@ -63,7 +63,7 @@ $demoKey = '5077d4ed60da38255c2c71421ddac36f';
 $demoToken = '55f772fcdae50ce0caee3986112621a3';
 
 try {
-  $yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
+  $yzApi = new \Sharapov\YouzignAPI\YzApi($demoKey, $demoToken);
 
   // Get designs list
   $responseJson = $yzApi->getDesigns();
