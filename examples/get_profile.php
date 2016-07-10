@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Sharapov A. <alexander@sharapov.biz>
- * Date: 17.03.2016
- * Time: 15:13
+ * Yourzign API client
+ * (c) Alexander Sharapov <alexander@sharapov.biz>
+ * http://sharapov.biz/
  */
 
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
@@ -13,7 +12,7 @@ $demoKey = '5077d4ed60da38255c2c71421ddac36f';
 $demoToken = '55f772fcdae50ce0caee3986112621a3';
 
 try {
-  $yzApi = new \YouzignAPI\YzApi($demoKey, $demoToken);
+  $yzApi = new \Sharapov\YouzignAPI\YzApi($demoKey, $demoToken);
 
   // Get designs list
   $responseJson = $yzApi->getProfile();

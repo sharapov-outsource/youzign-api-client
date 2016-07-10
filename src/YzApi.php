@@ -1,12 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Sharapov A. <alexander@sharapov.biz>
- * Date: 17.03.2016
- * Time: 15:15
+ * Yourzign API client
+ * (c) Alexander Sharapov <alexander@sharapov.biz>
+ * http://sharapov.biz/
  */
 
-namespace YouzignAPI;
+namespace Sharapov\YouzignAPI;
 
 class YzApi
 {
