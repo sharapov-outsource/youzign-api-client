@@ -91,6 +91,6 @@ Links
 
 [Composer](https://getcomposer.org/)
 
-[GitHub](https://github.com/sharapovweb/youzign-api-client)
+[GitHub](https://github.com/sharapov-outsource/youzign-api-client)
 
 [Packagist](https://packagist.org/packages/sharapov/youzign-api-client)
