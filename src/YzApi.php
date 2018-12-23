@@ -87,7 +87,6 @@ class YzApi
 
     $params['key'] = $this->getPublicKey();
     $params['token'] = $this->getToken();
-    print_r($params);
 
     try {
       $responseJson = $this->getClient()->request('POST', $this->_api . $query, array(
